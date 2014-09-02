@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>From ignorance, lead me to truth</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <style type="text/css">
+        table td {
+          padding: 5px 10px;
+        }
+        td.votes {
+          text-align: center;
+        }
+        td.description {
+          text-align: left;
+          font-size: 1.4em;
+        }
+        td.votes span.number {
+          font-size: 18px;
+          padding-left: 3px;
+        }
+        a.up {
+          color: #FF9973;
+        }
+        a.down {
+          color: #9999FF;
+        }
+        a.down span {
+          /*hue*/
+          transform: scaleY(-1);
+        }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <a class="navbar-brand">ikr - showing {{list_name}}</a>
+        </div>
+
+        <form action="/" class="navbar-form navbar-right" method="post">
+          <input type="text" id="list_name" name="list_name" class="form-control" placeholder="Create new list" />
+          <button type="submit" class="btn btn-default" title="onwards">Go</button>
+          <button type="button" id="rnd" class="btn btn-default" title="shallow privacy for shallow purposes">Rnd</button>
+        </form>
+      </nav>
+
+      {% if message %}
+        {{message}}
+      {% endif %}
+
+      <form action="/{{list_name}}/add" class="form-inline" method="post">
+        <input type="text"  name="item" class="form-control" placeholder="Add item to this list" />
+        <button type="submit" class="btn btn-default">Add</button>
+      </form>
+
+      <br />
+
+      <div class="text-center">
+        <table>
+        {% for item in list %}
+          <tr>
+            <td class="votes">
+              <a class="up" href="/{{list_name}}/upvote/{{item.id|urlencode}}"><span class="glyphicon glyphicon-arrow-up"></span></a><br>
+              <span class="number">{{item.votes}}</span><br/>
+              <a class="down" href="/{{list_name}}/downvote/{{item.id|urlencode}}"><span class="glyphicon glyphicon-arrow-up"></span></a>
+            </td>
+            <td class="description">
+              {{item.name|e}}
+            </td>
+          </tr>
+        {% endfor %}
+        </table>
+      </div>
+
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+$("#rnd").click(function() {
+    $("#list_name").val(Math.random().toString(36).substring(2));
+})
+    </script>
+  </body>
+</html>
