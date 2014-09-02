@@ -1,13 +1,17 @@
 import dataset
-from bottle import route, run, post, request, redirect
+from bottle import route, run, post, request, redirect, static_file
 from bottle import jinja2_view as view
 
 db = dataset.connect('sqlite:///ikr.db')
 table = db['ikr']
 
+@route('/<file:re:ikr\.(js|css)>')
+def server_static(file):
+    return static_file(file, root=".")
+
 @route("/<list_name>")
 @route("/")
-@view('index')
+@view('ikr')
 def index(list_name='default'):
     return {
         'list': sorted(table.find(list_name=list_name),

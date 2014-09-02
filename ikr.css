@@ -1,0 +1,24 @@
+table td {
+  padding: 5px 10px;
+}
+td.votes {
+  text-align: center;
+}
+td.description {
+  text-align: left;
+  font-size: 1.4em;
+}
+td.votes span.number {
+  font-size: 18px;
+  padding-left: 3px;
+}
+a.up {
+  color: #FF9973;
+}
+a.down {
+  color: #9999FF;
+}
+a.down span {
+  /*hue*/
+  transform: scaleY(-1);
+}

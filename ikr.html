@@ -5,33 +5,7 @@
     <title>From ignorance, lead me to truth</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <style type="text/css">
-        table td {
-          padding: 5px 10px;
-        }
-        td.votes {
-          text-align: center;
-        }
-        td.description {
-          text-align: left;
-          font-size: 1.4em;
-        }
-        td.votes span.number {
-          font-size: 18px;
-          padding-left: 3px;
-        }
-        a.up {
-          color: #FF9973;
-        }
-        a.down {
-          color: #9999FF;
-        }
-        a.down span {
-          /*hue*/
-          transform: scaleY(-1);
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="ikr.css">
   </head>
   <body>
 
@@ -79,10 +53,6 @@
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script>
-$("#rnd").click(function() {
-    $("#list_name").val(Math.random().toString(36).substring(2));
-})
-    </script>
+    <script src="ikr.js"></script>
   </body>
 </html>
