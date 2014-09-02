@@ -28,15 +28,24 @@ def go_to_list(list_name=None):
 
 @post("/<list_name>/add")
 def add(list_name):
-    table.insert(dict(list_name=list_name, name=request.forms['item'], votes=0))
-    return go_to_list(list_name)
+    row = dict(list_name=list_name, name=request.forms['item'], votes=0)
+
+    row['id'] = table.insert(row)
+
+    if request.params.get('format', '') == 'json':
+        return dict(row)
+    else:
+        return go_to_list(list_name)
 
 @route("/<list_name>/<action:re:(up|down)vote>/<id>")
 def vote(list_name, action, id):
     row = table.find_one(list_name=list_name, id=id)
     row['votes'] += 1 if action == 'upvote' else -1
     table.update(row, ['id'])
-    return go_to_list(list_name)
+    if request.params.get('format', '') == 'json':
+        return dict(row)
+    else:
+        return go_to_list(list_name)
 
 
 run(reloader=True, debug=True)
