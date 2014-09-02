@@ -5,6 +5,8 @@ from bottle import jinja2_view as view
 db = dataset.connect('sqlite:///ikr.db')
 table = db['ikr']
 
+HIDE_THRES = -10
+
 @route('/<file:re:ikr\.(js|css)>')
 def server_static(file):
     return static_file(file, root=".")
@@ -13,10 +15,14 @@ def server_static(file):
 @route("/")
 @view('ikr')
 def index(list_name='default'):
+    hide_thres = int(request.params.get('hide_thres', HIDE_THRES))
+
+    list = table.find(list_name=list_name)
+    list = sorted(list, key=lambda x: x['votes'], reverse=True)
+    list = [x for x in list if x['votes'] > hide_thres]
+
     return {
-        'list': sorted(table.find(list_name=list_name),
-                       key=lambda x: x['votes'],
-                       reverse=True),
+        'list': list,
         'list_name': list_name,
     }
 
