@@ -1,14 +1,12 @@
 # ikr
 
-*From ignorance, lead me to truth*
+A more serious and decent take on the idea of lists of items that can be voted on. It's [idk][] for when you actually *know*.
 
-It's [idk][] for when you actually *know*.
+Two hour short project for fun. This is pretty much just idk 2.0, with [dataset][] instead of [gspread][]
 
-A more serious and decent take on the idea of lists of items that can be voted on.
+> *From ignorance, lead me to truth*
 
 ## Why
-
-It's a short "shitty webapp" project like [idk][] (two hours so far).
 
 I realized I've been doing some sort of personal idea voting system in a
 notepad. Etherpad, specifically. I'm trying to move away from pads, but the
@@ -39,3 +37,4 @@ Being able to say that is a sign that idk was a success, by the way.
 
 [idk]: http://github.com/dequis/idk
 [dataset]: http://dataset.readthedocs.org/
+[gspread]: https://github.com/burnash/gspread
